@@ -1,1 +1,2 @@
-# CS1632_Exercise7
+# MonkeySim
+(deliberately inefficient) Monkey Simulator
