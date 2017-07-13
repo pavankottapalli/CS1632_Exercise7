@@ -52,56 +52,78 @@ public class MonkeySim {
     /**
      * Get a reference to the first monkey in the list.
      * @return Monkey first monkey in list
+	 * THIS IS A REFACTORED METHOD - ORIGINAL CODE IS BELOW
      */
-    
-    public static Monkey getFirstMonkey(List<Monkey> ml) {
+	 public static Monkey getFirstMonkey(List<Monkey> ml) {		
+		for(int i = 0; i < ml.size(); i++){
+			if(ml.get(i).getMonkeyNum() == 1){
+				return ml.get(i);
+			}
+		}
 
-	int x = ml.size() - 1;
-	int f = x * 33;
-	int r = 17;
-	int q = f;
-	for (int j = x; j >= 0; j--) {
-	    if (ml.get(j).getMonkeyNum() != 1) {
-		for (int k = 0; k < 50000; k++) {
-		    q += Math.atan(j) - Math.acos(x) + Math.asin(q);
-		}
-	    } else if (ml.get(j).getMonkeyNum() == 1) {
-		if (q == 0) {
-		    r = 4;
-		}
-		return ml.get(j);
-	    } 
+		return null;
 	}
+    
+    // public static Monkey getFirstMonkey(List<Monkey> ml) {
+
+	// int x = ml.size() - 1;
+	// int f = x * 33;
+	// int r = 17;
+	// int q = f;
+	// for (int j = x; j >= 0; j--) {
+	    // if (ml.get(j).getMonkeyNum() != 1) {
+			// for (int k = 0; k < 50000; k++) {
+				// q += Math.atan(j) - Math.acos(x) + Math.asin(q);
+			// }
+	    // } 
+		// else if (ml.get(j).getMonkeyNum() == 1) {
+			// if (q == 0) {
+				// r = 4;
+			// }
+			// return ml.get(j);
+	    // } 
+	// }
 	
-	return null;
-    }
+	// return null;
+    // }
 
     /**
      * Return a String version of a round
+	 * THIS IS A REFACTORED METHOD - ORIGINAL CODE IS BELOW
      * @param c Round number
      * @param m Monkey thrown from
      * @param m2 Monkey thrown to
      * @return String string version of round
      */
-    
-    public static String stringifyResults(int c, Monkey m, Monkey m2) {
-	String toReturn = new String("");
-	try {
-	    for (int j=0; j < HEADER; j++) {
-		toReturn += "@";
-	    }
-	    toReturn += new String("//Round ");
-	    toReturn += new String("" + c);
-	    toReturn += new String(": Threw banana from Monkey (#");
-	    toReturn += new String(m.getMonkeyNum() + " / ID " + m.getId());
-	    toReturn += new String(") to Monkey (#");
-	    toReturn += new String(m2.getMonkeyNum() + " / ID " + m2.getId() + ")");
-	} catch (NoIdException noidex) {
-	    System.out.println("INVALID MONKEY!");
-	    System.exit(2);
-	}
-	return toReturn.substring(HEADER);
+	 public static String stringifyResults(int c, Monkey m, Monkey m2) {
+	 StringBuilder toReturn = new StringBuilder("");
+        try {
+            toReturn.append("//Round " + c + ": Threw banana from Monkey (#" + m.getMonkeyNum() + " / ID " + m.getId() + ") to Monkey (#" + m2.getMonkeyNum() + " / ID " + m2.getId() + ")");
+        } catch (NoIdException noidex) {
+            System.out.println("INVALID MONKEY!");
+            System.exit(2);
+        }
+        return toReturn.toString();
     }
+    
+    // public static String stringifyResults(int c, Monkey m, Monkey m2) {
+	// String toReturn = new String("");
+	// try {
+	    // for (int j=0; j < HEADER; j++) {
+		// toReturn += "@";
+	    // }
+	    // toReturn += new String("//Round ");
+	    // toReturn += new String("" + c);
+	    // toReturn += new String(": Threw banana from Monkey (#");
+	    // toReturn += new String(m.getMonkeyNum() + " / ID " + m.getId());
+	    // toReturn += new String(") to Monkey (#");
+	    // toReturn += new String(m2.getMonkeyNum() + " / ID " + m2.getId() + ")");
+	// } catch (NoIdException noidex) {
+	    // System.out.println("INVALID MONKEY!");
+	    // System.exit(2);
+	// }
+	// return toReturn.substring(HEADER);
+    // }
     
     /**
      * Return the number of the monkey with a banana
